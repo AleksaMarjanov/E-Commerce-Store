@@ -32,7 +32,7 @@ export const StateContext = ({ children }) => {
     } else {
       product.quantity = quantity;
 
-      setCartItems([...cartItems, { ...(product + 1) }]);
+      setCartItems([...cartItems, { ...product }]);
     }
     toast.success(`${qty} ${product.name} added to the cart`);
   };
@@ -51,6 +51,7 @@ export const StateContext = ({ children }) => {
     <Context.Provider
       value={{
         showCart,
+        setShowCart,
         cartItems,
         totalPrice,
         totalQuantities,
@@ -58,6 +59,9 @@ export const StateContext = ({ children }) => {
         incQty,
         decQty,
         onAdd,
+        setCartItems,
+        setTotalPrice,
+        setTotalQuantities,
       }}
     >
       {children}
