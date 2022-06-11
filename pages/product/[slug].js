@@ -13,7 +13,13 @@ import { useStateContext } from "../../context/StateContext";
 const ProductDetails = ({ product, products }) => {
   const { image, name, details, price } = product;
   const [index, setIndex] = useState(0);
-  const { decQty, incQty, qty, onAdd } = useStateContext();
+  const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
+
+  const handleBuyNow = () => {
+    onAdd(product, qty);
+
+    setShowCart(true);
+  };
 
   return (
     <div>
@@ -26,17 +32,19 @@ const ProductDetails = ({ product, products }) => {
             />
           </div>
           <div className="small-images-container">
-            {image?.map((item, i) => {
+            {image?.map((item, i) => (
               <img
+                key={i}
                 src={urlFor(item)}
                 className={
                   i === index ? "small-image selected-image" : "small-image"
                 }
                 onMouseEnter={() => setIndex(i)}
-              />;
-            })}
+              />
+            ))}
           </div>
         </div>
+
         <div className="product-detail-desc">
           <h1>{name}</h1>
           <div className="reviews">
@@ -53,13 +61,13 @@ const ProductDetails = ({ product, products }) => {
           <p>{details}</p>
           <p className="price">${price}</p>
           <div className="quantity">
-            <h3>Quantity: </h3>
+            <h3>Quantity:</h3>
             <p className="quantity-desc">
               <span className="minus" onClick={decQty}>
                 <AiOutlineMinus />
               </span>
               <span className="num">{qty}</span>
-              <span className="minus" onClick={incQty}>
+              <span className="plus" onClick={incQty}>
                 <AiOutlinePlus />
               </span>
             </p>
@@ -72,12 +80,13 @@ const ProductDetails = ({ product, products }) => {
             >
               Add to Cart
             </button>
-            <button type="button" className="buy-now">
+            <button type="button" className="buy-now" onClick={handleBuyNow}>
               Buy Now
             </button>
           </div>
         </div>
       </div>
+
       <div className="maylike-products-wrapper">
         <h2>You may also like</h2>
         <div className="marquee">
@@ -94,11 +103,11 @@ const ProductDetails = ({ product, products }) => {
 
 export const getStaticPaths = async () => {
   const query = `*[_type == "product"] {
-      slug {
-        current
-      }
+    slug {
+      current
     }
-    `;
+  }
+  `;
 
   const products = await client.fetch(query);
 

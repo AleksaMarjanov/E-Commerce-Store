@@ -43,8 +43,9 @@ width: 100%;
   height: 400px;
   width: 100%;
   overflow-x: hidden;
+  
 }
-
+  
 .track {
   position: absolute;
   white-space: nowrap;
