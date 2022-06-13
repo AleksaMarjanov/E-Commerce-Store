@@ -1,3 +1,10 @@
+# Taste of Balkan E-Commerce Store
+<img src="https://i.ibb.co/yV841vF/ecommerce1.png" width="800px" />
+<img src="https://i.ibb.co/n0SdL2L/ecommerce2.png" width="800px" />
+<img src="https://i.ibb.co/CPbt7Z7/ecommerce3.png" width="800px" />
+<img src="https://i.ibb.co/BPn7QwL/ecommerce-Checkout.png" width="800px" />
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
